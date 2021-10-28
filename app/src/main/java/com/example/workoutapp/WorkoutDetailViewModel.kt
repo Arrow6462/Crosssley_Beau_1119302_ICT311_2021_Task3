@@ -1,15 +1,15 @@
 package com.example.workoutapp
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.*
 import java.util.*
 
-class WorkoutDetailViewModel() : ViewModel() {
+class WorkoutDetailViewModel(app: Application) : AndroidViewModel(app) {
 
     private val workoutRepository = WorkoutRepository.get()
     private val workoutIdLiveData = MutableLiveData<UUID>()
+
+    // val workoutList = database?.WorkoutDao()?.getWorkouts()
 
     var workoutLiveData: LiveData<Workout?> =
         Transformations.switchMap(workoutIdLiveData) { workoutId ->

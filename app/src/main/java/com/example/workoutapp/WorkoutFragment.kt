@@ -7,10 +7,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.EditText
-import android.widget.TimePicker
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.Observer
@@ -178,6 +175,7 @@ class WorkoutFragment : Fragment(), DatePickerFragment.Callbacks, TimePickerDial
     override fun onStop() {
         super.onStop()
         workoutDetailViewModel.saveWorkout(workout)
+        //Toast.makeText(context, "Workout Created / Updated!", Toast.LENGTH_SHORT).show()
     }
 
     override fun onDateSelected(date: Date) {

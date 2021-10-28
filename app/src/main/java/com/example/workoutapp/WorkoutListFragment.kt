@@ -7,11 +7,14 @@ import android.util.Log
 import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import database.WorkoutDao
 import java.util.*
 
 private const val TAG = "WorkoutListFragment"
@@ -27,6 +30,7 @@ class WorkoutListFragment : Fragment() {
 
     private var callbacks: Callbacks? = null
 
+    // Start-up work for deleting an activity.
     val selectedWorkouts = arrayListOf<Workout>()
 
     private lateinit var workoutRecyclerView: RecyclerView
@@ -89,6 +93,7 @@ class WorkoutListFragment : Fragment() {
                 val workout = Workout()
                 workoutListViewModel.addWorkout(workout)
                 callbacks?.onWorkoutSelected(workout.id)
+                Toast.makeText(context, "Workout Created!", Toast.LENGTH_SHORT).show()
                 true
             }
             else -> return super.onOptionsItemSelected(item)
@@ -129,7 +134,7 @@ class WorkoutListFragment : Fragment() {
             }
         }
 
-        override fun onClick(v: View) {
+        override fun onClick(view: View) {
             callbacks?.onWorkoutSelected(workout.id)
         }
     }
@@ -147,6 +152,8 @@ class WorkoutListFragment : Fragment() {
         override fun onBindViewHolder(holder: WorkoutHolder, position: Int) {
             val workout = workouts[position]
             holder.bind(workout)
+            // Floating action button gets set up here???
+            // if statment (selectedWorkouts.contains(workout val??? or workout class???))
         }
     }
 
