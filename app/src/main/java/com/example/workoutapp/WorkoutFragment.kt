@@ -1,12 +1,11 @@
 package com.example.workoutapp
 
+import android.app.AlertDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -32,6 +31,10 @@ class WorkoutFragment : Fragment(), DatePickerFragment.Callbacks, TimePickerDial
         ViewModelProviders.of(this).get(WorkoutDetailViewModel::class.java)
     }
 
+    private val workoutListViewModel: WorkoutListViewModel by lazy {
+        ViewModelProviders.of(this).get(WorkoutListViewModel::class.java)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         workout = Workout()
@@ -54,6 +57,9 @@ class WorkoutFragment : Fragment(), DatePickerFragment.Callbacks, TimePickerDial
         startTimeButton = view.findViewById(R.id.workout_start_time_button) as Button
         endTimeButton = view.findViewById(R.id.workout_end_time_button) as Button
         groupActivityCheckBox = view.findViewById(R.id.group_activity) as CheckBox
+
+        // Add menu to the workout.
+        setHasOptionsMenu(true)
 
         return view
     }
@@ -172,10 +178,34 @@ class WorkoutFragment : Fragment(), DatePickerFragment.Callbacks, TimePickerDial
         updateUI()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.delete_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == R.id.menu_delete) {
+            deleteWorkout()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun deleteWorkout() {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setPositiveButton("Yes"){_, _ ->
+            workoutListViewModel.workoutDelete(workout)
+            Toast.makeText(context, "Deleted Workout: ${workout.title} at ${workout.location}!", Toast.LENGTH_LONG).show()
+            activity?.onBackPressed()
+        }
+        builder.setNegativeButton("No"){_, _ -> }
+        builder.setTitle("Delete Workout: ${workout.title} at ${workout.location}?")
+        builder.setMessage("Are you sure you want to delete this workout?")
+        builder.create().show()
+    }
+
     override fun onStop() {
         super.onStop()
         workoutDetailViewModel.saveWorkout(workout)
-        //Toast.makeText(context, "Workout Created / Updated!", Toast.LENGTH_SHORT).show()
     }
 
     override fun onDateSelected(date: Date) {

@@ -30,9 +30,6 @@ class WorkoutListFragment : Fragment() {
 
     private var callbacks: Callbacks? = null
 
-    // Start-up work for deleting an activity.
-    val selectedWorkouts = arrayListOf<Workout>()
-
     private lateinit var workoutRecyclerView: RecyclerView
     private var adapter: WorkoutAdapter? = WorkoutAdapter(emptyList())
     private val workoutListViewModel: WorkoutListViewModel by lazy {
@@ -152,8 +149,6 @@ class WorkoutListFragment : Fragment() {
         override fun onBindViewHolder(holder: WorkoutHolder, position: Int) {
             val workout = workouts[position]
             holder.bind(workout)
-            // Floating action button gets set up here???
-            // if statment (selectedWorkouts.contains(workout val??? or workout class???))
         }
     }
 

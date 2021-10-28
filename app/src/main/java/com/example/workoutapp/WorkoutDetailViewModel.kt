@@ -2,6 +2,8 @@ package com.example.workoutapp
 
 import android.app.Application
 import androidx.lifecycle.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.util.*
 
 class WorkoutDetailViewModel(app: Application) : AndroidViewModel(app) {

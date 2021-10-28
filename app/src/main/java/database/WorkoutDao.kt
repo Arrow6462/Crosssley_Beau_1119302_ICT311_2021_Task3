@@ -1,10 +1,7 @@
 package database
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import com.example.workoutapp.Workout
 import java.util.*
 
@@ -21,4 +18,7 @@ interface WorkoutDao {
 
     @Insert
     fun addWorkout(workout: Workout)
+
+    @Delete
+    fun workoutDelete(workout: Workout)
 }

@@ -10,14 +10,13 @@
         android:id="@+id/workout_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:text="Workout Title"
         android:textColor="@android:color/black"
         android:textSize="17sp"
         app:layout_constraintEnd_toStartOf="@+id/workout_group_icon"
-        app:layout_constraintStart_toEndOf="@+id/list_item_button"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed" />
 
@@ -25,21 +24,19 @@
         android:id="@+id/workout_location"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="Workout Location"
         android:textColor="@android:color/black"
         android:textSize="17sp"
         app:layout_constraintEnd_toStartOf="@+id/workout_group_icon"
-        app:layout_constraintStart_toEndOf="@+id/list_item_button"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/workout_title" />
 
     <TextView
         android:id="@+id/workout_date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="Workout Date"
@@ -47,7 +44,7 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/workout_group_icon"
-        app:layout_constraintStart_toEndOf="@+id/list_item_button"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/workout_location"
         app:layout_constraintVertical_bias="0.047" />
 
@@ -91,16 +88,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_share" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_note" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

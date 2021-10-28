@@ -1,6 +1,9 @@
 package com.example.workoutapp
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class WorkoutListViewModel : ViewModel() {
 
@@ -9,5 +12,9 @@ class WorkoutListViewModel : ViewModel() {
 
     fun addWorkout(workout: Workout) {
         workoutRepository.addWorkout(workout)
+    }
+
+    fun workoutDelete(workout: Workout){
+        workoutRepository.workoutDelete(workout)
     }
 }
